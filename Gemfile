@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Devise gem for login/register
+gem 'devise'
 
 group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
