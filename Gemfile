@@ -27,6 +27,12 @@ gem 'jbuilder', '~> 2.5'
 # Devise gem for login/register
 gem 'devise'
 
+#Bootstrap
+gem 'bootstrap', '~> 4.6.1'
+
+# Jquery
+gem 'jquery-rails'
+
 group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
   gem 'rails_12factor'

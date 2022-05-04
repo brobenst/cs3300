@@ -1,0 +1,57 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<a class="navbar-brand" href="#">Brynn Robenstein</a>
+
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="/" class="nav-link">Home</a>
+  </li>
+</ul>
+
+
+<% if user_signed_in? %>
+  <div class="navbar-nav ml-auto">
+    <%= button_to "Log out", destroy_user_session_path, method: :delete, :class => "btn btn-primary ml-2" %>
+    <%= button_to "New Project", new_project_path, method: :get, :class => "btn btn-secondary ml-2" %>
+  </div>
+<% end %>
+
+<% if !user_signed_in? %>
+  <div class="navbar-nav ml-auto">
+    <%= button_to "Login", new_user_session_path, method: :get, :class => "btn btn-primary ml-2" %>
+    <%= button_to "Sign up", new_user_registration_path, method: :get, :class => "btn btn-success ml-2" %>
+  </div>
+<% end %>
+
+</nav>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="container">
+    <h2 class="text-center mb-4 mt-4">Log in</h2>
+
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", :class => "form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field form-check">
+        <%= f.check_box :remember_me, :class => "form-check-input" %>
+        <%= f.label :remember_me, :class => "form-check-label" %>
+      </div>
+    <% end %>
+
+    <div class="actions form-group">
+      <%= f.submit "Log in", :class => "btn btn-primary mt-4"%>
+    </div>
+
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>
