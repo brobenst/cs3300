@@ -10,7 +10,7 @@ RSpec.feature "Projects", type: :feature do
   context "Create new project" do
     before(:each) do
       visit new_project_path
-      within("form") do
+      within(all('form')[2]) do
         fill_in "Title", with: "Test title"
       end
     end
@@ -34,7 +34,7 @@ RSpec.feature "Projects", type: :feature do
     end
 
     scenario "should be successful" do
-      within("form") do
+      within(all('form')[2]) do
         fill_in "Description", with: "New description content"
       end
       click_button "Update Project"
@@ -42,7 +42,7 @@ RSpec.feature "Projects", type: :feature do
     end
 
     scenario "should fail" do
-      within("form") do
+      within(all('form')[2]) do
         fill_in "Description", with: ""
       end
       click_button "Update Project"
@@ -54,7 +54,7 @@ RSpec.feature "Projects", type: :feature do
     let!(:project) { Project.create(title: "Test title", description: "Test content") }
     scenario "remove project" do
       visit projects_path
-      click_link "Destroy"
+      click_link "Delete"
       expect(page).to have_content("Project was successfully destroyed")
       expect(Project.count).to eq(0)
     end
